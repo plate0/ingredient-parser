@@ -86,7 +86,7 @@ function parsePrep(s?: string): [string, string | undefined] {
   if (!s) {
     return ['', undefined]
   }
-  const parts = s.match(/(.+)(?:--|;|–|—| - )(.+)/)
+  const parts = s.match(/(.+?)(?:--|;|–|—|\s-\s)(.+)/)
   if (!parts) {
     return [_.trim(s), undefined]
   }
