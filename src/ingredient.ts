@@ -83,13 +83,13 @@ function isOptional(s?: string): [string, boolean] {
 
 // parse a string into an ingredient name, optionally followed by a preparation
 function parsePrep(s?: string): [string, string | undefined] {
-  const prepSep = '--'
   if (!s) {
     return ['', undefined]
   }
-  const parts = s.split(prepSep)
-  if (parts.length < 2) {
+  const parts = s.match(/(.+)(?:--|;|–|—| - )(.+)/)
+  if (!parts) {
     return [_.trim(s), undefined]
   }
-  return [_.trim(_.head(parts)), _.trim(_.tail(parts).join(prepSep))]
+  const [name, prep] = _.tail(parts)
+  return [_.trim(name), _.trim(prep)]
 }
