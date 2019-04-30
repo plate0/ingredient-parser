@@ -28,6 +28,34 @@ describe.each([
         'garlic -- minced (optional)',
         [undefined, undefined, undefined, 'garlic', 'minced', true]
     ],
+    [
+        'garlic — minced (optional)',
+        [undefined, undefined, undefined, 'garlic', 'minced', true]
+    ],
+    [
+        'garlic – minced (optional)',
+        [undefined, undefined, undefined, 'garlic', 'minced', true]
+    ],
+    [
+        'garlic; minced (optional)',
+        [undefined, undefined, undefined, 'garlic', 'minced', true]
+    ],
+    [
+        'garlic;minced (optional)',
+        [undefined, undefined, undefined, 'garlic', 'minced', true]
+    ],
+    [
+        'garlic - minced (optional)',
+        [undefined, undefined, undefined, 'garlic', 'minced', true]
+    ],
+    [
+        'garlic - minced - finely (optional)',
+        [undefined, undefined, undefined, 'garlic', 'minced - finely', true]
+    ],
+    [
+        'garlic-minced (optional)',
+        [undefined, undefined, undefined, 'garlic-minced', undefined, true]
+    ],
     ['1⅔c garlic', [5, 3, 'c', 'garlic', undefined, false]],
     ['1 ⅔ c garlic', [5, 3, 'c', 'garlic', undefined, false]],
     ['1⅔ c garlic', [5, 3, 'c', 'garlic', undefined, false]],

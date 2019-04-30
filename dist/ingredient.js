@@ -78,14 +78,14 @@ function isOptional(s) {
 }
 // parse a string into an ingredient name, optionally followed by a preparation
 function parsePrep(s) {
-    var prepSep = '--';
     if (!s) {
         return ['', undefined];
     }
-    var parts = s.split(prepSep);
-    if (parts.length < 2) {
+    var parts = s.match(/(.+?)(?:--|;|–|—|\s-\s)(.+)/);
+    if (!parts) {
         return [_.trim(s), undefined];
     }
-    return [_.trim(_.head(parts)), _.trim(_.tail(parts).join(prepSep))];
+    var _a = _.tail(parts), name = _a[0], prep = _a[1];
+    return [_.trim(name), _.trim(prep)];
 }
 //# sourceMappingURL=ingredient.js.map
