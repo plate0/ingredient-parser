@@ -40,22 +40,38 @@ export const parseIngredient = (s?: string): Ingredient | undefined => {
     quantity_denominator: undefined,
     preparation: undefined,
     optional: false,
-    unit: undefined
+    unit: undefined,
   }
   if (!s) {
     return ing
   }
   s = _.trim(s)
-  const [num, numRest] = matchNumber(s)
-  ing.quantity_numerator = num.n
-  ing.quantity_denominator = num.d
-  s = _.trim(numRest)
-  const [maybeUnit, ...rest] = s.split(/\s/)
-  const unit = parseUnit(maybeUnit)
-  if (unit) {
-    ing.unit = unit
-    s = rest.join(' ')
-  }
+
+  // While we are parsing valid amount/unit combos, greedy
+  // consume them, but only keep the first
+  let amount
+  let unit
+  let latestAmount, amountRest
+  let latestUnit
+  do {
+    ;[latestAmount, amountRest] = matchNumber(s)
+    if (!amount) {
+      amount = latestAmount
+    }
+    s = _.trim(amountRest)
+    const [maybeUnit, ...rest] = s.split(/\s/)
+    latestUnit = parseUnit(maybeUnit)
+    if (!unit) {
+      unit = latestUnit
+    }
+    if (latestUnit) {
+      s = rest.join(' ')
+    }
+  } while ((latestAmount.n && latestAmount.d) || latestUnit)
+  ing.quantity_numerator = amount.n
+  ing.quantity_denominator = amount.d
+  ing.unit = unit
+  //
   const [str, optional] = isOptional(s)
   ing.optional = optional
   let [name, prep] = parsePrep(str)
