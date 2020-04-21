@@ -62,6 +62,25 @@ describe.each([
     '5.5oz tomato paste, sliced',
     [11, 2, 'oz', 'tomato paste, sliced', undefined, false]
   ],
+  [
+    '250g/9oz long grain or basmati rice',
+    [250, 1, 'g', 'long grain or basmati rice', undefined, false]
+  ],
+  [
+    '600ml/20fl oz chicken stock',
+    [600, 1, 'ml', 'oz chicken stock', undefined, false]
+  ],
+  [
+    '500g/1lb 2oz skinless, boneless chicken thighs, cut into bite-sized pieces',
+    [
+      500,
+      1,
+      'g',
+      '2oz skinless, boneless chicken thighs, cut into bite-sized pieces',
+      undefined,
+      false
+    ]
+  ],
   ['', [undefined, undefined, undefined, '', undefined, false]],
   [undefined, [undefined, undefined, undefined, '', undefined, false]]
 ])(

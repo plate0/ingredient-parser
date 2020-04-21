@@ -1,3 +1,5 @@
+import { first, includes } from 'lodash'
+
 export type Unit =
   | 'g'
   | 'mg'
@@ -23,6 +25,14 @@ export const parseUnit = (s?: string): Unit | undefined => {
   if (s === 'T') {
     return 'tbsp'
   }
+
+  // Some sites have amounts listed in two units, like:
+  // 500g/1lb or 200g/7oz
+  // If the `/` is present, break the unit on that and parse the first unit.
+  if (includes(s, '/')) {
+    s = first(s.split('/'))
+  }
+
   const unit = s.toLowerCase()
   switch (unit) {
     case 'oz':
