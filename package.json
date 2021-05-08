@@ -12,7 +12,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "fraction.js": "4.0.12",
-    "lodash": "4.17.14"
+    "lodash": "4.17.21"
   },
   "devDependencies": {
     "@types/jest": "24.0.11",
